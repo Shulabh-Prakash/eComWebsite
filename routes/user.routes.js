@@ -120,7 +120,7 @@ router.post("/cart/add", authenticate, async (req, res) => {
   }
 });
 
-router.get("/cart", async (req, res) => {
+router.get("/cart", authenticate, async (req, res) => {
   try {
     const result = await pool.query(
       `
@@ -174,9 +174,7 @@ router.post("/buy", authenticate, async (req, res) => {
       `
       SELECT product_id, quantity
       FROM cart
-      WHERE user_uuid = $1
-      `,
-      [userUuid]
+      `
     );
 
     if (cartResult.rows.length === 0) {
@@ -215,9 +213,7 @@ router.post("/buy", authenticate, async (req, res) => {
     await client.query(
       `
       DELETE FROM cart
-      WHERE user_uuid = $1
-      `,
-      [userUuid]
+      `
     );
 
     await client.query("COMMIT");

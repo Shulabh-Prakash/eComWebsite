@@ -13,7 +13,7 @@ const Cart = () => {
     setLoading(true);
     try {
       const res = await getCart();
-      console.log("cart res: ", res);
+      // console.log("cart res: ", res);
       setCart(res.data);
 
     } catch (err) {

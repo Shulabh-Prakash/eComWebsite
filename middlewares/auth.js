@@ -9,8 +9,8 @@ const client = jwksClient({
 });
 
 const getKey = (header, callback) => {
-  console.log("JWT kid:", header);
- console.log("client: ",client);
+//   console.log("JWT kid:", header);
+//  console.log("client: ",client);
   client.getSigningKey(header.kid, (err, key) => {
     if (err) {
       console.error("JWKS error:", err);
@@ -34,7 +34,7 @@ export const authenticate = (req, res, next) => {
 
   jwt.verify(token, getKey, { issuer: "http://localhost:8080/realms/ecommerce", algorithms: ["RS256"], }, (err, decoded) => {
     if (err) {
-      console.log("jwt verify err: ",err.message);
+      // console.log("jwt verify err: ",err.message);
       return res.status(401).json({ message: "Invalid token" });
     }
 

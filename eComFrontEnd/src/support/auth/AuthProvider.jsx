@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       .then((auth) => {
         setAuthenticated(auth);
         setInitialized(true);
-        console.log("keycloak token: ", keycloak.token)
+        // console.log("keycloak token: ", keycloak.token)
       })
       .catch(() => {
         setAuthenticated(false);

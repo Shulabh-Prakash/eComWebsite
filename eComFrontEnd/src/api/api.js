@@ -6,9 +6,9 @@ const API = axios.create({
 });
 
 API.interceptors.request.use(async (req) => {
-    console.log("req", req);
-    console.log("auth", keycloak.authenticated );
-    console.log("tok",  keycloak.token);
+    // console.log("req", req);
+    // console.log("auth", keycloak.authenticated );
+    // console.log("tok",  keycloak.token);
     if (keycloak.authenticated && keycloak.token) {
       await keycloak.updateToken(30);
   
@@ -64,7 +64,7 @@ export const getCart = () =>
   API.get("/products/cart");
 
 export const buyProduct = () =>
-  API.post("/products/buy");
+  API.post("/products/buy",{});
 
 export const deleteItemFromCart = (productId)=>
   API.delete(`/products/cart/remove/${productId}`);
